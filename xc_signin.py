@@ -1,8 +1,8 @@
 import requests
 import os
 
-username=os.getenv('xc_username')
-password=os.getenv('xc_password')
+username=os.getenv('username')
+password=os.getenv('password')
 
 s=requests.Session()
 s.get('https://cdn.79tian.com/api/wxapi/view/AppSwitch.php?inc=ajax_login&act=BannerHome')
