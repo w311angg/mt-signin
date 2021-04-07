@@ -6,12 +6,13 @@ name: Python application
 on:
   push:
     branches: [ main ]
-    path:
+    paths:
       - 'xc_signin.py'
   watch:
     types: started
   schedule:
     - cron: '0 8 * * *'
+  workflow_dispatch:
 
 jobs:
   build:
