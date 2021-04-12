@@ -33,7 +33,6 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Run
       env:
-        username: ${{ secrets.xc_username }}
-        password: ${{ secrets.xc_password }}
+        id: ${{ secrets.sjly_id }}
       run: |
         python sjly.py
