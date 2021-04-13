@@ -3,7 +3,7 @@ import os
 import base64
 import time
 
-cookies=os.getenv('blue_cookie')
+cookies=os.getenv('cookie')
 cookies=base64.b64decode(cookies)
 
 print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
