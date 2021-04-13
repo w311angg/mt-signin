@@ -37,6 +37,6 @@ jobs:
         timezone: Asia/Shanghai
     - name: Run
       env:
-        cookie: {{ secrets.blue_cookie }}
+        cookie: ${{ secrets.blue_cookie }}
       run: |
         python blue.py
