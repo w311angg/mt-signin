@@ -46,6 +46,6 @@ jobs:
         python sjly.py
     - name: zhuan
       env:
-        id: ${{ secrets.zhuan_ppu }}
+        ppu: ${{ secrets.zhuan_ppu }}
       run: |
         python zhuan.py
