@@ -1,13 +1,15 @@
 # This workflow will install Python dependencies, run tests and lint with a single version of Python
 # For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
-name: xc_signin
+name: signin
 
 on:
   push:
     branches: [ main ]
     paths:
       - 'xc_signin.py'
+      - 'zhuan.py'
+      - 'sjly.py'
   watch:
     types: started
   schedule:
@@ -31,9 +33,19 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Run
+    - name: xcysc
       env:
         username: ${{ secrets.xc_username }}
         password: ${{ secrets.xc_password }}
       run: |
         python xc_signin.py
+    - name: sjly
+      env:
+        id: ${{ secrets.sjly_id }}
+      run: |
+        python sjly.py
+    - name: zhuan
+      env:
+        id: ${{ secrets.zhuan_ppu }}
+      run: |
+        python zhuan.py
