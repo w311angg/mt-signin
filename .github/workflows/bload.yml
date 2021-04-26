@@ -25,13 +25,12 @@ jobs:
         pip install python-telegram
         curl -O https://raw.githubusercontent.com/alexander-akhmetov/python-telegram/master/examples/send_message.py
         curl -O https://raw.githubusercontent.com/alexander-akhmetov/python-telegram/master/examples/utils.py
+        echo 'python send_message.py $sec /checkin' >start.sh
+    - name: Setup tmate session
+      uses: mxschmitt/action-tmate@v3
+      timeout-minutes: 60
     - name: Run
       env:
         sec: ${{ secrets.sec }}
-        code: ${{ github.event.inputs.verifyCode }}
       run: |
-        echo $code
-        python send_message.py $sec /checkin <<EOF
-        $code
-        EOF
- 
+        python send_message.py $sec /checkin
