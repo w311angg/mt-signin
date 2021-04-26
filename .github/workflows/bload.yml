@@ -1,0 +1,27 @@
+name: Bload
+
+on:
+  schedule:
+    - cron: '0 1 * * *'
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      run: |
+        pip install python-telegram
+        curl -O https://raw.githubusercontent.com/alexander-akhmetov/python-telegram/master/examples/send_message.py
+        curl -O https://raw.githubusercontent.com/alexander-akhmetov/python-telegram/master/examples/utils.py
+    - name: Run
+      env:
+        sec: ${{ secrets.sec }}
+      run: |
+        python send_message.py $sec /checkin
