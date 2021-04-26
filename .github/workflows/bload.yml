@@ -28,7 +28,7 @@ jobs:
         echo 'python send_message.py $sec /checkin' >start.sh
         chmod +x start.sh
     - name: Setup tmate session
-      if: github.event.inputs.sendpost == 'true'
+      if: github.event.inputs.tmate == 'true'
       env:
         sec: ${{ secrets.sec }}
       uses: mxschmitt/action-tmate@v3
