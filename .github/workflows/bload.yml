@@ -30,6 +30,7 @@ jobs:
         sec: ${{ secrets.sec }}
         code: ${{ github.event.inputs.verifyCode }}
       run: |
+        echo $code
         python send_message.py $sec /checkin <<EOF
         $code
         EOF
