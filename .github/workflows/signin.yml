@@ -52,7 +52,7 @@ jobs:
         ppu: ${{ secrets.zhuan_ppu }}
       run: |
         python zhuan.py
-   - name: creeper
+    - name: creeper
       continue-on-error: true
       env:
         username: ${{ secrets.cp_username }}
