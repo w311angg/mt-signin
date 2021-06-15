@@ -1,5 +1,6 @@
 import requests
 import os
+import base64
 
 cookies=os.getenv('zhuan_cookie')
 cookies=base64.b64decode(cookies)
