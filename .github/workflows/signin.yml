@@ -49,6 +49,6 @@ jobs:
     - name: zhuan
       if: always()
       env:
-        ppu: ${{ secrets.zhuan_ppu }}
+        cookies: ${{ secrets.zhuan_cookies }}
       run: |
         python zhuan.py
