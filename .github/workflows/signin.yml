@@ -10,8 +10,8 @@ on:
       - 'xc_signin.py'
       - 'zhuan.py'
       - 'sjly.py'
-  watch:
-    types: started
+#  watch:
+#    types: started
   schedule:
     - cron: '0 1 * * *'
   workflow_dispatch:
@@ -20,7 +20,7 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    if: github.event.repository.owner.id == github.event.sender.id
+    #if: github.event.repository.owner.id == github.event.sender.id
     environment: Production
 
     steps:
