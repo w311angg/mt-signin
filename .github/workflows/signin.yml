@@ -34,20 +34,20 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: xcysc
-      continue-on-error: true
+      if: always()
       env:
         username: ${{ secrets.xc_username }}
         password: ${{ secrets.xc_password }}
       run: |
         python xc_signin.py
     - name: sjly
-      continue-on-error: true
+      if: always()
       env:
         id: ${{ secrets.sjly_id }}
       run: |
         python sjly.py
     - name: zhuan
-      continue-on-error: true
+      if: always()
       env:
         ppu: ${{ secrets.zhuan_ppu }}
       run: |
