@@ -78,7 +78,6 @@ jobs:
       if: always()
       run: |
         echo "::group::Install dependencies"
-        pip install python-telegram
         git clone https://github.com/alexander-akhmetov/python-telegram
         echo "::endgroup::"
         proxychains python python-telegram/examples/send_message.py ${{ secrets.blink_secret }} '/checkin'
