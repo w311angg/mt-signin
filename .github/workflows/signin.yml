@@ -15,11 +15,6 @@ on:
   schedule:
     - cron: '0 1 * * *'
   workflow_dispatch:
-    inputs:
-      ssh:
-        description: 'SSH connection to Actions'
-        required: false
-        default: 'false'
 
 jobs:
   build:
