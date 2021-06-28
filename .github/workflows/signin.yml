@@ -81,7 +81,9 @@ jobs:
         sudo sed -i 's/socks4 	127.0.0.1 9050/socks5 127.0.0.1 1080/g' /etc/proxychains4.conf
         sudo sed -i 's/#quiet_mode/quiet_mode/g' /etc/proxychains4.conf
         git clone https://github.com/alexander-akhmetov/python-telegram
-        echo "proxychains python python-telegram/examples/send_message.py ${{ secrets.blink_secret }} '/checkin'" > /tmp/checkin
+        echo "proxychains python-telegram/examples/chat_stats.py ${{ secrets.blink_secret }}
+        proxychains python python-telegram/examples/send_message.py ${{ secrets.blink_secret }} '/checkin'" > /tmp/checkin
+        chmod +x /tmp/checkin
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
