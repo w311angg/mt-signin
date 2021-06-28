@@ -57,7 +57,8 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         python zhuan.py
-    - name: Set proxy
+    - name: Install dependencies
+      if: always()
       env:
         config: ${{ secrets.ss_config }}
       run: |
@@ -79,6 +80,8 @@ jobs:
         systemctl status --no-pager shadowsocks
         sudo sed -i 's/socks4 	127.0.0.1 9050/socks5 127.0.0.1 1080/g' /etc/proxychains4.conf
         sudo sed -i 's/#quiet_mode/quiet_mode/g' /etc/proxychains4.conf
+        git clone https://github.com/alexander-akhmetov/python-telegram
+        echo "proxychains python python-telegram/examples/send_message.py ${{ secrets.blink_secret }} '/checkin'" > /tmp/checkin
     - name: SSH connection to Actions
       uses: P3TERX/ssh2actions@v1.0.0
       if: (github.event.inputs.ssh == 'true' && github.event.inputs.ssh  != 'false') || contains(github.event.action, 'ssh')
@@ -88,7 +91,4 @@ jobs:
     - name: blink
       if: always()
       run: |
-        echo "::group::Install dependencies"
-        git clone https://github.com/alexander-akhmetov/python-telegram
-        echo "::endgroup::"
-        proxychains python python-telegram/examples/send_message.py ${{ secrets.blink_secret }} '/checkin'
+        /tmp/checkin
