@@ -52,3 +52,11 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         python zhuan.py
+    - name: blink
+      if: always()
+      env:
+        secret: ${{ secrets.blink_secret }}
+      run: |
+        pip install python-telegram
+        git clone https://github.com/alexander-akhmetov/python-telegram
+        python python-telegram/examples/send_message.py $secret '/checkin'
