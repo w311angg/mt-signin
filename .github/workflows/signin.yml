@@ -33,22 +33,44 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Set proxy
+      env:
+        config: ${{ secrets.ss_config }}
+      run: |
+        sudo apt-get install shadowsocks-libev simple-obfs proxychains-ng
+        sudo -E sh -c 'echo $config|base64 -d > /etc/shadowsocks-libev/config.json'
+        sudo sh -c 'echo "\
+        [Unit]
+        Description=Shadowsocks
+        After=network.target
+        [Service]
+        ExecStart=ss-local -c /etc/shadowsocks-libev/config.json
+        Rnestart=on-abort
+        [Install]
+        WantedBy=multi-user.target\
+        ">/etc/systemd/system/shadowsocks.service'
+        sudo systemctl daemon-reload
+        sudo systemctl start shadowsocks
+        sleep 3s
+        systemctl status --no-pager shadowsocks
+        sudo sed -i 's/socks4 	127.0.0.1 9050/socks5 127.0.0.1 1080/g' /etc/proxychains4.conf
+        sudo sed -i 's/#quiet_mode/quiet_mode/g' /etc/proxychains4.conf
     - name: xcysc
       if: always()
       env:
         username: ${{ secrets.xc_username }}
         password: ${{ secrets.xc_password }}
       run: |
-        python xc_signin.py
+        proxychains python -u xc_signin.py
     - name: sjly
       if: always()
       env:
         id: ${{ secrets.sjly_id }}
       run: |
-        python sjly.py
+        proxychains python -u sjly.py
     - name: zhuan
       if: always()
       env:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
-        python zhuan.py
+        proxychains python -u zhuan.py
