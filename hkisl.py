@@ -13,9 +13,10 @@ content="""\
 <a href=\"%s\">立即前往</a>"""%url
 order=s.get(url).text
 #if True:
-if (not '缺货中' in order) and outofstock==0:
+if not '缺货中' in order:
+  if outofstock==1:
+    pytools.jmail('ISL_Check','免费VPS补货啦',content,html=True)
   outofstock=0
-  pytools.jmail('ISL_Check','免费VPS补货啦',content,html=True)
 else:
   outofstock=1
 
