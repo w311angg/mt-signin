@@ -56,8 +56,3 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
-    - name: hkisl
-      env:
-        jmail: ${{ secrets.jmail_password }}
-      run: |
-        python -u hkisl.py
