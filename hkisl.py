@@ -3,7 +3,7 @@ import pytools
 
 try:
   with open('hkisl.txt') as f:
-    outofstock=bool(int(f.read()))
+    outofstock=int(f.read())
 except FileNotFoundError:
   outofstock=1
 
