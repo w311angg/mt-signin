@@ -37,6 +37,10 @@ jobs:
       uses: w311ang/setproxy@main
       with:
         config: ${{ secrets.ss_config }}
+    - name: Setup pytools
+      run: |
+        curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
+        curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
     - name: xcysc
       if: always()
       env:
@@ -56,3 +60,8 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
+    - name: Run
+      env:
+        jmail: ${{ secrets.jmail_password }}
+      run: |
+        python -u hkisl.py
