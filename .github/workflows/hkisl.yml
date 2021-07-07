@@ -25,6 +25,14 @@ jobs:
         run: |
           curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
           curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
+      - name: Cache
+        uses: actions/cache@v2
+        with:
+          path: |
+            ./hkisl.txt
+          key: hkisl-${{ github.run_id }}
+        restore-keys: |
+          hkisl-
       - name: Run
         env:
           jmail: ${{ secrets.jmail_password }}
