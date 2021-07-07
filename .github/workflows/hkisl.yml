@@ -21,6 +21,10 @@ jobs:
         run: |
           python -m pip install --upgrade pip
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+      - name: Setup pytools
+        run: |
+          curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
+          curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
       - name: Run
         run: |
           python -u hkisl.py
