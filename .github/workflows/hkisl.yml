@@ -26,5 +26,7 @@ jobs:
           curl -O https://raw.githubusercontent.com/w311ang/pytools/main/pytools.py
           curl -O https://raw.githubusercontent.com/w311ang/pytools/main/aes.py
       - name: Run
+        env:
+          jmail: ${{ secrets.jmail_password }}
         run: |
           python -u hkisl.py
