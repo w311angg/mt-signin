@@ -5,7 +5,7 @@ try:
   with open('hkisl.txt') as f:
     outofstock=bool(f.read())
 except FileNotFoundError:
-  outofstock=0
+  outofstock=1
 
 s=requests.Session()
 url='https://www.hkisl.net/cart.php?a=add&pid=218&language=chinese_cn'
