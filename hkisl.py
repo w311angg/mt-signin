@@ -4,7 +4,7 @@ import pytools
 with open('hkisl.txt') as f:
   try:
     outofstock=bool(f.read())
-  except FileNotFound:
+  except FileNotFoundError:
     outofstock=0
 
 s=requests.Session()
