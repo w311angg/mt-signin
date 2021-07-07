@@ -31,8 +31,8 @@ jobs:
           path: |
             ./hkisl.txt
           key: hkisl-${{ github.run_id }}
-        restore-keys: |
-          hkisl-
+          restore-keys: |
+            hkisl-
       - name: Run
         env:
           jmail: ${{ secrets.jmail_password }}
