@@ -31,4 +31,9 @@ data={'audios':[],
       'type':3,
       'videos':[]}
 with s.post(url+'easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%id,json=data,headers={'method':'POST','requesturi':'/easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%id}) as resp:
-  print(resp.json()['message'])
+  json=resp.json()
+  code=json['statusCode']
+  if code==200:
+    print(json['data']['punchPerformanceType']['name'])
+  else:
+    print(json['message']
