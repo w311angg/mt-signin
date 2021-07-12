@@ -36,4 +36,4 @@ with s.post(url+'easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%
   if code==200:
     print(json['data']['punchPerformanceType']['name'])
   else:
-    print(json['message']
+    print(json['message'])
