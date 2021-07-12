@@ -56,3 +56,9 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
+    - name: class
+      if: always()
+      env:
+        token: ${{ secrets.class_token }}
+      run: |
+        proxychains python -u class.py
