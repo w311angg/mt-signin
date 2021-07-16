@@ -32,7 +32,7 @@ jobs:
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        cat requirements.txt | xargs -n 1 pip install
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Set proxy
       uses: w311ang/setproxy@main
       with:
@@ -69,10 +69,3 @@ jobs:
         token: ${{ secrets.class_token }}
       run: |
         proxychains python -u class.py
-    - name: wx
-      if: always()
-      env:
-        name: ${{ secrets.wx_realname }}
-      run: |
-        cd wx
-        proxychains python -u wechats.py
