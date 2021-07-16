@@ -9,6 +9,11 @@ on:
   schedule:
     - cron: 0,30 * * * *
   workflow_dispatch:
+    inputs:
+      ssh:
+        description: 'SSH connection to Actions'
+        required: false
+        default: 'false'
 
 jobs:
   build:
@@ -34,7 +39,13 @@ jobs:
           key: wx-${{ github.run_id }}
           restore-keys: |
             wx-
+      - name: SSH connection to Actions
+        if: github.event.inputs.ssh == 'true'
+        uses: P3TERX/ssh2actions@v1.0.0
+        env:
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
       - name: Run
         run: |
           cd wx
-          proxychains python -u reward.py
+          proxychains python -u reward.py > qrcode.txt
