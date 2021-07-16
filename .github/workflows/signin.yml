@@ -9,6 +9,7 @@ on:
     paths:
       - '*.py'
       - '.github/workflows/signin.yml'
+      - 'requirements.txt'
 #  watch:
 #    types: started
   schedule:
