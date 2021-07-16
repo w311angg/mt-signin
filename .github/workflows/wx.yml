@@ -2,8 +2,8 @@ name: WX Reward
 
 on:
   push:
-    paths-ignore:
-      - 'README.md'
+    paths:
+      - 'wx/reward.py'
   schedule:
     - cron: 0,30 * * * *
   workflow_dispatch:
