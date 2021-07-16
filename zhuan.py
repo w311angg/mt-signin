@@ -11,5 +11,5 @@ with requests.post('https://app.zhuanzhuan.com/zz/v2/zzpost/zhuanall',headers={'
     re=json['respData']['toast']
     print(re)
   except TypeError:
-    raise Exception(json['errMsg']
+    raise Exception(json['errMsg'])
 
