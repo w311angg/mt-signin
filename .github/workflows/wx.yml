@@ -4,7 +4,7 @@ on:
   push:
     paths:
       - 'wx/reward.py'
-      - 'wx.yml'
+      - '.github/workflows/wx.yml'
   schedule:
     - cron: 0,30 * * * *
   workflow_dispatch:
