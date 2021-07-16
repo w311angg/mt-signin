@@ -21,8 +21,7 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install requests
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          cat requirements.txt | xargs -n 1 pip install
       - name: Set proxy
         uses: w311ang/setproxy@main
         with:
