@@ -8,7 +8,7 @@ on:
     branches: [ main ]
     paths:
       - '*.py'
-      - 'signin.yml'
+      - '.github/workflows/signin.yml'
 #  watch:
 #    types: started
   schedule:
