@@ -37,6 +37,13 @@ jobs:
       uses: w311ang/setproxy@main
       with:
         config: ${{ secrets.ss_config }}
+    - name: Cache wx
+      uses: actions/cache@v2
+      with:
+        path: wx/itchat.pkl
+        key: wx-${{ github.run_id }}
+        restore-keys: |
+          wx-
     - name: xcysc
       if: always()
       env:
@@ -62,3 +69,10 @@ jobs:
         token: ${{ secrets.class_token }}
       run: |
         proxychains python -u class.py
+    - name: wx
+      if: always()
+      env:
+        name: ${{ secrets.wx_realname }}
+      run: |
+        cd wx
+        proxychains python -u wechats.py
