@@ -2,7 +2,7 @@ import itchat, time
 from itchat.content import *
 import os
 
-realname=os.getenv('wx_name')
+realname=os.getenv('name')
 @itchat.msg_register(TEXT, isGroupChat=True)
 #@itchat.msg_register(TEXT)
 def text_reply(msg):
