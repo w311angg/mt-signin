@@ -1,3 +1,4 @@
 requests
 xmltodict
 PyCryptodome
+git+https://github.com/luvletter2333/ItChat.git
