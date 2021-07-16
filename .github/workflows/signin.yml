@@ -7,9 +7,7 @@ on:
   push:
     branches: [ main ]
     paths:
-      - 'xc_signin.py'
-      - 'zhuan.py'
-      - 'sjly.py'
+      - '*.py'
 #  watch:
 #    types: started
   schedule:
