@@ -36,4 +36,4 @@ with s.post(url+'easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%
   if code==200:
     print('签到成功')
   else:
-    print(json['message'])
+    raise Exception(json['message'])
