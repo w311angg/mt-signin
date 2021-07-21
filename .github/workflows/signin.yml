@@ -63,3 +63,10 @@ jobs:
         sendtext: ${{ secrets.class_sendtext }}
       run: |
         proxychains python -u class.py
+    - name: blisign
+      if: always()
+      env:
+        idlist: ${{ secrets.blisign_idlist }}
+        token: ${{ secrets.blisign_token }}
+      run: |
+        proxychains python -u blisign.py
