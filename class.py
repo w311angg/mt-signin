@@ -4,6 +4,7 @@ import os
 
 url='https://care.seewo.com/'
 accesstoken=os.getenv('token')
+sendtext=os.getenv('sendtext')
 
 s=requests.Session()
 s.headers.update({'accesstoken':accesstoken,'version':'3.0.30'})
@@ -27,7 +28,7 @@ data={'audios':[],
       'homeworkId':id,
       'pictureUrls':[],
       'punchDate':date,
-      'text':'546L5Y2a5aWH5a6J5YWo',
+      'text':sendtext,
       'type':3,
       'videos':[]}
 with s.post(url+'easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%id,json=data,headers={'method':'POST','requesturi':'/easicare/broadcast/api/v1/dynamics/punch/questions/%s/answers'%id}) as resp:
