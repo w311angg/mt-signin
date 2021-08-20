@@ -46,7 +46,6 @@ jobs:
         proxychains python -u xc_signin.py
     - name: sjly
       if: always()
-      continue-on-error: true
       env:
         id: ${{ secrets.sjly_id }}
       run: |
