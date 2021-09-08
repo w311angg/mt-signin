@@ -14,7 +14,7 @@ for i,num in zip(data,range(len(data))):
       code=json['data']['statusCode']
       if code==200:
         beans=json['data']['data']['teacherBeans']
-        print('%s: 赠送成功，当前豆子: %s'%(i,beans))
+        print('%s账号赠送成功'%num)
       elif code==10121:
         print('已达到今日送花上限')
         break
