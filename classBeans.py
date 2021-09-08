@@ -12,5 +12,17 @@ for i in range(15):
     code=json['statusCode']
     if code==200:
       print('成功点评第%s次'%i)
+    else:
+      raise Exception('未知原因点评失败')
+
+with s.post('https://care.seewo.com/easicare/account/v2/daily/rlqjzuovylxglhtjtnmqign74u119731',headers={'method':'POST','requesturi':'/easicare/account/v2/daily/rlqjzuovylxglhtjtnmqign74u119731'}) as resp:
+  json=resp.json()
+  code=json['statusCode']
+  if code==200:
+    print('签到成功')
+  elif code==10101:
+    print('今天已签到过')
+  else:
+    raise Exception('未知原因签到失败')
 
 import flower
