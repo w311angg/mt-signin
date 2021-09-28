@@ -44,12 +44,12 @@ jobs:
         password: ${{ secrets.xc_password }}
       run: |
         proxychains python -u xc_signin.py
-    - name: sjly
-      if: always()
-      env:
-        id: ${{ secrets.sjly_id }}
-      run: |
-        proxychains python -u sjly.py
+    #- name: sjly
+    #  if: always()
+    #  env:
+    #    id: ${{ secrets.sjly_id }}
+    #  run: |
+    #    proxychains python -u sjly.py
     - name: zhuan
       if: always()
       env:
