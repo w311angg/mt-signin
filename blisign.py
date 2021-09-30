@@ -10,7 +10,10 @@ for gpid in idlist:
   param={'group_id':gpid,'access_key':token}
   with s.get('https://api.vc.bilibili.com/link_group/v1/group/detail',params=param) as resp:
     data=resp.json()['data']
-    name=data['group_name']
+    try:
+      name=data['group_name']
+    except TypeError:
+      continue
     ownid=data['owner_uid']
     print('%s：'%name,end='')
   param=param|{'owner_id':ownid}
