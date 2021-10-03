@@ -13,7 +13,7 @@ with s.get(url+'easicare/broadcast/api/v5/dynamics?size=10&minimumId=0&sortId=&p
   for i in content:
     title=str(base64.b64decode(i['title']),'utf-8')
     id=i['uid']
-    if '安全打卡' in title:
+    if '安全防疫双打卡' in title:
       break
 with s.get(url+'easicare/broadcast/api/v1/dynamics/punch/questions/%s/calendar'%id,headers={'method':'GET','requesturi':'/easicare/broadcast/api/v1/dynamics/punch/questions/%s/calendar'%id}) as resp:
   calendar=resp.json()['data']['calendar']
