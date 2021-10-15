@@ -5,7 +5,7 @@ from base64 import b64decode
 
 s=requests.Session()
 
-cookie=b64decode(getenv('cookies'))
+cookie=b64decode(getenv('cookie'))
 s.headers.update({'cookie':cookie})
 
 with s.get('https://bbs.kafan.cn/forum.php?mod=guide&view=hot&mobile=2') as web:
