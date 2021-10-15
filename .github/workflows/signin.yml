@@ -78,3 +78,9 @@ jobs:
         userid: ${{ secrets.classbeans_userid }}
       run: |
         proxychains python -u classBeans.py
+    - name: kafan
+      if: always()
+      env:
+        cookie: ${{ secrets.kafan_cookie }}
+      run: |
+        proxychains python -u kafan.py
