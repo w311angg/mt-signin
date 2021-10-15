@@ -1,10 +1,12 @@
 import requests
 import re
 from os import getenv
+from base64 import b64decode
 
 s=requests.Session()
 
-s.headers.update({'cookie':getenv('cookie')})
+cookie=b64decode(getenv('cookies'))
+s.headers.update({'cookie':cookie})
 
 with s.get('https://bbs.kafan.cn/forum.php?mod=guide&view=hot&mobile=2') as web:
   text=web.text
