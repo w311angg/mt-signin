@@ -13,6 +13,7 @@ with s.get('https://bbs.kafan.cn/forum.php?mod=guide&view=hot&mobile=2') as web:
   #print(text)
   if '>马上签到<' in text:
     signurl=re.search('(?<=<a href=").*(?=">马上签到</a>)',text).group().replace('amp;','')
+    signurl='https://bbs.kafan.cn/'+signurl
   elif '<body class="bg">\r\n签到完毕' in text:
     print('已签到过了')
     exit()
