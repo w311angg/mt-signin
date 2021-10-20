@@ -19,5 +19,10 @@ for gpid in idlist:
   param=param|{'owner_id':ownid}
   with s.get('https://api.vc.bilibili.com/link_setting/v1/link_setting/sign_in',params=param) as resp:
     json=resp.json()
-    msg=json['msg']
+    if 'msg' in json:
+      msg=json['msg']
+    elif 'message' in json:
+      msg=json['message']
+    if '未登录' in msg:
+      raise Exception(msg)
     print(msg)
