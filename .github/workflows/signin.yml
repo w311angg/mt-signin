@@ -84,3 +84,9 @@ jobs:
         cookie: ${{ secrets.kafan_cookie }}
       run: |
         proxychains python -u kafan.py
+    - name: tadu
+      if: always()
+      env:
+        cookie: ${{ secrets.tadu_cookie }}
+      run: |
+        proxychains python -u tadu.py
