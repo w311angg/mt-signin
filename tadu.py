@@ -12,10 +12,10 @@ with s.get('http://211.151.212.30/user/api/dailyAttendance770/signAndShow') as r
   message=json['message']
   if code==100:
     data=json['data']
-    signTotalDaysStr=data['signTotalDaysStr']
+    signDaysStr=data['signDaysStr']
     todayPrestige=data['todayPrestige']
     tomorrowStr=data['tomorrowStr']
-    print('%s，今天获得%s，%s，'%(signTotalDaysStr,todayPrestige,tomorrowStr),end='')
+    print('%s，今天获得%s，%s，'%(signDaysStr,todayPrestige,tomorrowStr),end='')
   else:
     raise Exception(str(code)+' '+message)
 
