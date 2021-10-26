@@ -88,5 +88,8 @@ jobs:
       if: always()
       env:
         cookie: ${{ secrets.tadu_cookie }}
-      run: |
-        proxychains python -u tadu.py
+      uses: nick-invision/retry@v2
+      with:
+        max_attempts: 3
+        command: |
+          proxychains python -u tadu.py
