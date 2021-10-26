@@ -90,6 +90,7 @@ jobs:
         cookie: ${{ secrets.tadu_cookie }}
       uses: nick-invision/retry@v2
       with:
+        timeout_minutes: 2
         max_attempts: 3
         command: |
           proxychains python -u tadu.py
