@@ -96,13 +96,13 @@ jobs:
         cookie: ${{ secrets.kafan_cookie }}
       run: |
         proxychains python -u kafan.py
-    - name: tadu
-      if: always()
-      env:
-        cookie: ${{ secrets.tadu_cookie }}
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 2
-        max_attempts: 3
-        command: |
-          proxychains python -u tadu.py
+    #- name: tadu
+    #  if: always()
+    #  env:
+    #    cookie: ${{ secrets.tadu_cookie }}
+    #  uses: nick-invision/retry@v2
+    #  with:
+    #    timeout_minutes: 2
+    #    max_attempts: 3
+    #    command: |
+    #      proxychains python -u tadu.py
