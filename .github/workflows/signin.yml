@@ -107,3 +107,10 @@ jobs:
     #    max_attempts: 3
     #    command: |
     #      proxychains python -u tadu.py
+    - name: fuckbigstudy
+      if: always()
+      env:
+        cookie: ${{ secrets.fuckbigstudy_cookie }}
+        wxopenid: ${{ secrets.fuckbigstudy_wxopenid }}
+      run: |
+        proxychains python -u fuckbigstudy.py
