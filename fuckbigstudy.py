@@ -2,8 +2,12 @@ import requests
 import os
 
 s=requests.Session()
-s.headers.update({'Cookie':os.getenv('cookie'),'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010 Build/QKQ1.191014.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3135 MMWEBSDK/20210902 Mobile Safari/537.36 MMWEBID/6025 MicroMessenger/8.0.15.2001(0x28000F41) Process/tools WeChat/arm64 Weixin GPVersion/1 NetType/WIFI Language/zh_CN ABI/arm64'})
-wxtk=os.getenv('wxopenid')
+#s.verify=False
+with open('fuckbigstudy.conf') as f:
+  lines=f.read().splitlines()
+  cookie=lines[0]
+  wxtk=lines[2]
+s.headers.update({'Cookie':cookie,'User-Agent':'Mozilla/5.0 (Linux; Android 10; ONEPLUS A5010 Build/QKQ1.191014.012; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/3135 MMWEBSDK/20210902 Mobile Safari/537.36 MMWEBID/6025 MicroMessenger/8.0.15.2001(0x28000F41) Process/tools WeChat/arm64 Weixin GPVersion/1 NetType/WIFI Language/zh_CN ABI/arm64'})
 
 def fuckstudy():
   ids=[]
@@ -39,6 +43,7 @@ def fuckstudy():
       raise Exception("%s：学习失败"%name)
 
 def fuckread():
+  #s.verify=False
   articles=[]
   for i in range(1,100):
     with s.get('https://wx.58deep.com/projecthn/projecthnPageList?wxopenid=%s&limit=10&page=%s'%(wxtk,i)) as resp:
