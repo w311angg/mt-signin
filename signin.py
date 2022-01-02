@@ -7,7 +7,7 @@ password=os.getenv('password')
 
 s = requests.Session()
 s.headers.update({'user-agent': 'Mozilla/5.0 (Linux; Android 10; ONEPLUS A3010 Build/QQ3A.200805.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/88.0.4324.152 Mobile Safari/537.36'})
-s.get('https://www.google.com')
+#s.get('https://www.google.com')
 s.get('https://bbs.binmt.cc/')
 with s.get('https://bbs.binmt.cc/member.php?mod=logging&action=login&mobile=2') as web:
   text=web.text
