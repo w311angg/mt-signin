@@ -51,6 +51,8 @@ jobs:
         sendingData: ${{ secrets.classbeans_sendingdata }}
         token: ${{ secrets.classbeans_token }}
         userid: ${{ secrets.classbeans_userid }}
+        token2: ${{ secrets.class_token }}
+        sendtext: ${{ secrets.class_sendtext }}
     - name: xcysc
       if: always()
       env:
