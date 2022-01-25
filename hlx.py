@@ -68,6 +68,6 @@ for i in users:
     status=signinn[0]
     msg=signinn[1]
     if status==1:
-      print('%s: 签到成功'%name)
+      print('%s%s: 签到成功'%('; ' if count else '',name),end='')
     else:
-      print('%s: %s'%(name,msg))
+      print('%s%s: %s'%('; ' if count else '',name,msg),end='')
