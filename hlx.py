@@ -2,6 +2,7 @@ import requests
 from pytools.pytools import tomd5
 import json
 import os
+import time
 
 users=json.loads(os.getenv('users'))
 
@@ -52,7 +53,7 @@ def signin(catId):
   with s.get('http://floor.huluxia.com/user/signin/ANDROID/4.0',params=_params) as resp:
     try:
       json=resp.json()
-    except RequestsJSONDecodeError:
+    except requests.exceptions.JSONDecodeError:
       text=resp.text
       if 'abnormal' in text:
         return [0,'被检测']
@@ -71,10 +72,15 @@ for i in users:
   for i,count in zip(catId,range(len(catId))):
     id=i['id']
     name=i['name']
-    signinn=signin(id)
-    status=signinn[0]
-    msg=signinn[1]
-    if status==1:
-      print('%s%s: 签到成功'%('; ' if count else '',name),end='')
-    else:
-      print('%s%s: %s'%('; ' if count else '',name,msg),end='')
+    for _ in range(2):
+      signinn=signin(id)
+      status=signinn[0]
+      msg=signinn[1]
+      if status==1:
+        print('%s%s: 签到成功'%('; ' if count else '',name),end='')
+        break
+      else:
+        print('%s%s: %s'%('; ' if count else '',name,msg),end='')
+        if msg=='被检测':
+          break
+    time.sleep(3)
