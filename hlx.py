@@ -61,7 +61,7 @@ for i in users:
   sign=i[2]
   login(username,password,sign)
   catId=getAllCatId()
-  for i in catId:
+  for i,count in zip(catId,range(len(catId))):
     id=i['id']
     name=i['name']
     signinn=signin(id)
