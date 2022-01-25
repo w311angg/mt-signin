@@ -64,7 +64,9 @@ def signin(catId):
     return [status,msg]
 
 catId=getAllCatId()
-for i in users:
+for i,count in zip(users,range(len(users))):
+  if count:
+    print()
   username=i[0]
   password=i[1]
   sign=i[2]
