@@ -50,17 +50,24 @@ def signin(catId):
   _params=params.copy()
   _params['cat_id']=catId
   with s.get('http://floor.huluxia.com/user/signin/ANDROID/4.0',params=_params) as resp:
-    json=resp.json()
+    try:
+      json=resp.json()
+    except RequestsJSONDecodeError:
+      text=resp.text
+      if 'abnormal' in text:
+        return [0,'被检测']
+      else:
+        return [0,text]
     status=json['status']
     msg=json['msg']
     return [status,msg]
 
+catId=getAllCatId()
 for i in users:
   username=i[0]
   password=i[1]
   sign=i[2]
   login(username,password,sign)
-  catId=getAllCatId()
   for i,count in zip(catId,range(len(catId))):
     id=i['id']
     name=i['name']
