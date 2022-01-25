@@ -117,3 +117,9 @@ jobs:
     #    wxopenid: ${{ secrets.fuckbigstudy_wxopenid }}
     #  run: |
     #    proxychains python -u fuckbigstudy.py
+    - name: hlx
+      if: always()
+      env:
+        users: ${{ secrets.hlx_users }}
+      run: |
+        proxychains python -u hlx.py
