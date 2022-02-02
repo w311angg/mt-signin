@@ -3,6 +3,7 @@ from pytools.pytools import tomd5
 import json
 import os
 import time
+from tenacity import retry, stop_after_attempt
 
 users=json.loads(os.getenv('users'))
 
@@ -47,6 +48,7 @@ def getAllCatId():
     else:
       raise Exception('获取板块异常: '+msg)
 
+@retry(stop=stop_after_attempt(10),wait=wait_fixed(2))
 def signin(catId):
   _params=params.copy()
   _params['cat_id']=catId
