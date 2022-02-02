@@ -3,7 +3,7 @@ from pytools.pytools import tomd5
 import json
 import os
 import time
-from tenacity import retry, stop_after_attempt
+from tenacity import retry, stop_after_attempt, wait_fixed
 
 users=json.loads(os.getenv('users'))
 
