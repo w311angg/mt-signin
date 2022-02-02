@@ -79,10 +79,10 @@ for i,count in zip(users,range(len(users))):
       status=signinn[0]
       msg=signinn[1]
       if status==1:
-        print('%s%s: 签到成功'%('; ' if count else '',name),end='')
+        print('%s%s: 签到成功'%('; ' if (count or _) else '',name),end='')
         break
       else:
-        print('%s%s: %s'%('; ' if count else '',name,msg),end='')
+        print('%s%s: %s'%('; ' if (count or _) else '',name,msg),end='')
         if msg=='被检测':
-          break
+          raise Exception('%s: '%name+msg)
     time.sleep(3)
