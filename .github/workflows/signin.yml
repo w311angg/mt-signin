@@ -39,6 +39,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Set proxy
+      id: setproxy
       uses: w311ang/setproxy@main
       with:
         config: ${{ secrets.ss_config }}
@@ -54,8 +55,7 @@ jobs:
         token2: ${{ secrets.class_token }}
         sendtext: ${{ secrets.class_sendtext }}
     - name: xcysc
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         username: ${{ secrets.xc_username }}
         password: ${{ secrets.xc_password }}
@@ -68,31 +68,27 @@ jobs:
     #  run: |
     #    proxychains python -u sjly.py
     - name: zhuan
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
     - name: class
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         token: ${{ secrets.class_token }}
         sendtext: ${{ secrets.class_sendtext }}
       run: |
         proxychains python -u class.py
     - name: blisign
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         idlist: ${{ secrets.blisign_idlist }}
         token: ${{ secrets.blisign_token }}
       run: |
         proxychains python -u blisign.py
     - name: classBeans
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         sendingData: ${{ secrets.classbeans_sendingdata }}
         token: ${{ secrets.classbeans_token }}
@@ -123,8 +119,7 @@ jobs:
     #  run: |
     #    proxychains python -u fuckbigstudy.py
     - name: hlx
-      needs: Set proxy
-      if: always()
+      if: always() && steps.setproxy.outcome == 'success'
       env:
         users: ${{ secrets.hlx_users }}
       run: |
