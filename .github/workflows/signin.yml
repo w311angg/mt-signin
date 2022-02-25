@@ -54,6 +54,7 @@ jobs:
         token2: ${{ secrets.class_token }}
         sendtext: ${{ secrets.class_sendtext }}
     - name: xcysc
+      needs: Set proxy
       if: always()
       env:
         username: ${{ secrets.xc_username }}
@@ -67,12 +68,14 @@ jobs:
     #  run: |
     #    proxychains python -u sjly.py
     - name: zhuan
+      needs: Set proxy
       if: always()
       env:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
     - name: class
+      needs: Set proxy
       if: always()
       env:
         token: ${{ secrets.class_token }}
@@ -80,6 +83,7 @@ jobs:
       run: |
         proxychains python -u class.py
     - name: blisign
+      needs: Set proxy
       if: always()
       env:
         idlist: ${{ secrets.blisign_idlist }}
@@ -87,6 +91,7 @@ jobs:
       run: |
         proxychains python -u blisign.py
     - name: classBeans
+      needs: Set proxy
       if: always()
       env:
         sendingData: ${{ secrets.classbeans_sendingdata }}
@@ -118,6 +123,7 @@ jobs:
     #  run: |
     #    proxychains python -u fuckbigstudy.py
     - name: hlx
+      needs: Set proxy
       if: always()
       env:
         users: ${{ secrets.hlx_users }}
