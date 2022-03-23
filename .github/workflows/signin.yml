@@ -73,13 +73,13 @@ jobs:
         cookie: ${{ secrets.zhuan_cookie }}
       run: |
         proxychains python -u zhuan.py
-    - name: class
-      if: always() && steps.setproxy.outcome == 'success'
-      env:
-        token: ${{ secrets.class_token }}
-        sendtext: ${{ secrets.class_sendtext }}
-      run: |
-        proxychains python -u class.py
+#    - name: class
+#      if: always() && steps.setproxy.outcome == 'success'
+#      env:
+#        token: ${{ secrets.class_token }}
+#        sendtext: ${{ secrets.class_sendtext }}
+#      run: |
+#        proxychains python -u class.py
     - name: blisign
       if: always() && steps.setproxy.outcome == 'success'
       env:
