@@ -124,3 +124,4 @@ jobs:
         users: ${{ secrets.hlx_users }}
       run: |
         proxychains python -u hlx.py
+    - uses: gautamkrishnar/keepalive-workflow@master
