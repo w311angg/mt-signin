@@ -41,3 +41,4 @@ jobs:
         password: ${{ secrets.password }}
       run: |
         proxychains python -u signin.py
+    - uses: gautamkrishnar/keepalive-workflow@master
