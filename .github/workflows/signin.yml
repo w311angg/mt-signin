@@ -126,4 +126,11 @@ jobs:
         users: ${{ secrets.hlx_users }}
       run: |
         proxychains python -u hlx.py
+    - name: bird
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        username: ${{ secrets.bird_username }}
+        password: ${{ secrets.bird_password }}
+      run: |
+        proxychains python -u bird.py
     - uses: gautamkrishnar/keepalive-workflow@master
