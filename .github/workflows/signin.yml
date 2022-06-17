@@ -124,8 +124,12 @@ jobs:
       if: always() && steps.setproxy.outcome == 'success'
       env:
         users: ${{ secrets.hlx_users }}
-      run: |
-        proxychains python -u hlx.py
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 2
+        max_attempts: 3
+        command: |
+          proxychains python -u hlx.py
     - name: bird
       if: always() && steps.setproxy.outcome == 'success'
       env:
