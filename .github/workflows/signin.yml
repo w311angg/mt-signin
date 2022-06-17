@@ -126,7 +126,7 @@ jobs:
         users: ${{ secrets.hlx_users }}
       uses: nick-invision/retry@v2
       with:
-        timeout_minutes: 2
+        timeout_minutes: 10
         max_attempts: 3
         command: |
           proxychains python -u hlx.py
