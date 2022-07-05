@@ -69,12 +69,12 @@ jobs:
     #    id: ${{ secrets.sjly_id }}
     #  run: |
     #    proxychains python -u sjly.py
-    - name: zhuan
-      if: always() && steps.setproxy.outcome == 'success'
-      env:
-        cookie: ${{ secrets.zhuan_cookie }}
-      run: |
-        proxychains python -u zhuan.py
+    #- name: zhuan
+    #  if: always() && steps.setproxy.outcome == 'success'
+    #  env:
+    #    cookie: ${{ secrets.zhuan_cookie }}
+    #  run: |
+    #    proxychains python -u zhuan.py
 #    - name: class
 #      if: always() && steps.setproxy.outcome == 'success'
 #      env:
