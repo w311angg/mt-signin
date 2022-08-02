@@ -14,7 +14,8 @@ for i in range(15):
     if code==200:
       print('成功点评第%s次'%i)
     else:
-      raise Exception('未知原因点评失败')
+      message=json['message']
+      raise Exception('点评失败: %s'%message)
 
 with s.post('https://care.seewo.com/easicare/account/v2/daily/rlqjzuovylxglhtjtnmqign74u119731',headers={'method':'POST','requesturi':'/easicare/account/v2/daily/rlqjzuovylxglhtjtnmqign74u119731'}) as resp:
   json=resp.json()
