@@ -69,7 +69,7 @@ jobs:
         restore-keys: |
           ${{ github.job }}-
     - name: flushCache
-      if: always() && (github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false')
+      if: always() && ((github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false') || github.event_name == 'push')
       run: |
         rm disabledrepos.json
     - name: xcysc
