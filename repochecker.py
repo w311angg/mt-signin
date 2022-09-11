@@ -19,7 +19,7 @@ for username in usernames:
     nowrepos.add('%s/%s'%(username,name))
 jsondump(list(nowrepos),'repos.json')
 
-nowrepos-={'w311ang/AutoApiSecret-1'}
+oldrepos+={'w311ang/AutoApiSecret-1'}
 deletedrepos=oldrepos-nowrepos
 disabledrepos=[]
 for repo in deletedrepos:
