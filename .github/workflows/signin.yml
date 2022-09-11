@@ -137,4 +137,10 @@ jobs:
         password: ${{ secrets.bird_password }}
       run: |
         proxychains python -u bird.py
+    - name: repochecker
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        token: ${{ secrets.github_personaltoken }}
+      run: |
+        proxychains python -u repochecker.py
     - uses: gautamkrishnar/keepalive-workflow@master
