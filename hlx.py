@@ -87,4 +87,4 @@ for i,count in zip(users,range(len(users))):
         print('%s%s: %s'%('; ' if (count or _) else '',name,msg),end='')
         if msg=='被检测':
           raise Exception('%s: '%name+msg)
-    time.sleep(3)
+    time.sleep(0.5)
