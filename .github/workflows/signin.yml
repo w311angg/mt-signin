@@ -68,6 +68,10 @@ jobs:
         key: ${{ github.job }}-${{ github.run_id }}
         restore-keys: |
           ${{ github.job }}-
+    - name: flushCache
+      if: always() && (github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false')
+      run: |
+        rm disabledrepos.json
     - name: xcysc
       if: always() && steps.setproxy.outcome == 'success'
       env:
@@ -142,6 +146,7 @@ jobs:
     - name: repochecker
       if: always() && steps.setproxy.outcome == 'success'
       env:
+        jmail: ${{ secrets.JMAIL_PASSWORD }}
         token: ${{ secrets.repochecker_token }}
       run: |
         proxychains python -u repochecker.py
@@ -155,8 +160,4 @@ jobs:
         max_attempts: 3
         command: |
           proxychains python -u hlx.py
-    - name: flushCache
-      if: always() && (github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false')
-      run: |
-        rm disabledrepos.json
     - uses: gautamkrishnar/keepalive-workflow@master
