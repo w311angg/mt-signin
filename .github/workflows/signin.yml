@@ -60,7 +60,7 @@ jobs:
       uses: actions/cache@v2
       with:
         path: |
-          ./repos.json
+          ./disabledrepos.json
         key: ${{ github.job }}-${{ github.run_id }}
         restore-keys: |
           ${{ github.job }}-
