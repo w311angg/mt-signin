@@ -120,16 +120,6 @@ jobs:
     #    wxopenid: ${{ secrets.fuckbigstudy_wxopenid }}
     #  run: |
     #    proxychains python -u fuckbigstudy.py
-    - name: hlx
-      if: always() && steps.setproxy.outcome == 'success'
-      env:
-        users: ${{ secrets.hlx_users }}
-      uses: nick-invision/retry@v2
-      with:
-        timeout_minutes: 10
-        max_attempts: 3
-        command: |
-          proxychains python -u hlx.py
     - name: bird
       if: always() && steps.setproxy.outcome == 'success'
       env:
@@ -143,4 +133,14 @@ jobs:
         token: ${{ secrets.repochecker_token }}
       run: |
         proxychains python -u repochecker.py
+    - name: hlx
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        users: ${{ secrets.hlx_users }}
+      uses: nick-invision/retry@v2
+      with:
+        timeout_minutes: 10
+        max_attempts: 3
+        command: |
+          proxychains python -u hlx.py
     - uses: gautamkrishnar/keepalive-workflow@master
