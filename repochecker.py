@@ -25,7 +25,7 @@ for username in usernames:
         disabledrepos.append('%s/%s'%(username,name))
 
 if disabledrepos:
-  jmail('Repo Checker','%s 仓库被封了!'%', '.join([i.split('/')[1] for i in disabledrepos),\
+  jmail('Repo Checker','%s 仓库被封了!'%', '.join([i.split('/')[1] for i in disabledrepos]),\
 """
 %s
 """%'\n'.join(['* https://github.com/%s'%repo for repo in disabledrepos])\
