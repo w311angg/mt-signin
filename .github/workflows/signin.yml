@@ -56,6 +56,14 @@ jobs:
         userid: ${{ secrets.classbeans_userid }}
         token2: ${{ secrets.class_token }}
         sendtext: ${{ secrets.class_sendtext }}
+    - name: Cache
+      uses: actions/cache@v2
+      with:
+        path: |
+          ./repos.json
+        key: ${{ github.job }}-${{ github.run_id }}
+        restore-keys: |
+          ${{ github.job }}-
     - name: xcysc
       if: always() && steps.setproxy.outcome == 'success'
       env:
