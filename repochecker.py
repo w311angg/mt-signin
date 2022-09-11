@@ -22,14 +22,14 @@ for username in usernames:
         #js=resp.json()
         #msg=js['message']
         #reason=js['block']['reason']
-        disabledrepos.append(repo)
-jsondump(disabledrepos,'disabledrepos.json')
+        disabledrepos.append('%s/%s'%(username,name))
 
 if disabledrepos:
-  jmail('Repo Checker','%s 仓库被封了!'%', '.join(disabledrepos),\
+  jmail('Repo Checker','%s 仓库被封了!'%', '.join([i.split('/')[1] for i in disabledrepos),\
 """
 %s
 """%'\n'.join(['* https://github.com/%s'%repo for repo in disabledrepos])\
 )
+jsondump(disabledrepos,'disabledrepos.json')
 print('disabledrepos:',disabledrepos)
 print('repos:',repos)
