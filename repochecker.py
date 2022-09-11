@@ -28,7 +28,7 @@ if disabledrepos:
   jmail('Repo Checker','%s 仓库被封了!'%', '.join([i.split('/')[1] for i in disabledrepos]),\
 """
 %s
-"""%'\n'.join(['* https://github.com/%s'%repo for repo in disabledrepos])\
-)
+"""%'\n'.join(['* https://github.com/%s'%repo for repo in disabledrepos]),\
+md=True)
 jsondump(disabledrepos,'disabledrepos.json')
 print('disabledrepos:',disabledrepos)
