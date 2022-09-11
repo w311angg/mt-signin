@@ -20,6 +20,10 @@ on:
         description: 'SSH connection to Actions'
         required: false
         default: 'false'
+      flushcache:
+        description: 'flushcache'
+        required: false
+        default: 'false'
 
 jobs:
   build:
@@ -151,4 +155,8 @@ jobs:
         max_attempts: 3
         command: |
           proxychains python -u hlx.py
+    - name: flushCache
+      if: always() && (github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false')
+      run: |
+        rm disabledrepos.json
     - uses: gautamkrishnar/keepalive-workflow@master
