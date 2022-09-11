@@ -23,7 +23,7 @@ on:
       flushcache:
         description: 'flushcache'
         required: false
-        default: 'false'
+        default: 'true'
 
 jobs:
   build:
