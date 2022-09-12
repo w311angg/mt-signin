@@ -71,7 +71,7 @@ jobs:
     - name: flushCache
       if: always() && ((github.event.inputs.flushcache == 'true' && github.event.inputs.flushcache  != 'false') || github.event_name == 'push')
       run: |
-        rm disabledrepos.json
+        rm disabledrepos.json || true
     - name: xcysc
       if: always() && steps.setproxy.outcome == 'success'
       env:
