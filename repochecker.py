@@ -15,14 +15,15 @@ for username in usernames:
   js=resp.json()
   for repo in js:
     name=repo['name']
-    if not name in disabledrepos:
-      resp=s.get('https://api.github.com/repos/%s/%s'%(username,name),headers=headers)
+    fullname='%s/%s'%(username,name)
+    if not fullname in disabledrepos:
+      resp=s.get('https://api.github.com/repos/%s'%fullname,headers=headers)
       code=resp.status_code
       if code==403:
         #js=resp.json()
         #msg=js['message']
         #reason=js['block']['reason']
-        disabledrepos.append('%s/%s'%(username,name))
+        disabledrepos.append(fullname)
 
 if disabledrepos:
   jmail('Repo Checker','%s 等仓库被封了!'%', '.join([i.split('/')[1] for i in (disabledrepos[:2] if len(disabledrepos)>2 else disabledrepos)]),\
