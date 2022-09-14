@@ -8,7 +8,8 @@ usernames=['w311ang','w311angg']
 
 s=httpx.Client()
 headers={'authorization':'token '+token}
-disabledrepos=jsonread('disabledrepos.json',[])
+olddisabledrepos=set(jsonread('disabledrepos.json',set()))
+disabledrepos=set(olddisabledrepos)
 
 for username in usernames:
   resp=s.get('https://api.github.com/users/%s/repos'%username,headers=headers)
@@ -23,13 +24,16 @@ for username in usernames:
         #js=resp.json()
         #msg=js['message']
         #reason=js['block']['reason']
-        disabledrepos.append(fullname)
+        disabledrepos.add(fullname)
 
-if disabledrepos:
-  jmail('Repo Checker','%s 等仓库被封了!'%', '.join([i.split('/')[1] for i in (disabledrepos[:2] if len(disabledrepos)>2 else disabledrepos)]),\
+newdisabledrepos=disabledrepos-olddisabledrepos
+if newdisabledrepos:
+  jmail('Repo Checker','%s 等仓库被封了!'%', '.join([i.split('/')[1] for i in (newdisabledrepos[:2] if len(newdisabledrepos)>2 else newdisabledrepos)]),\
 """
 %s
-"""%'\n'.join(['* https://github.com/%s'%repo for repo in disabledrepos]),\
+"""%'\n'.join(['* https://github.com/%s'%repo for repo in newdisabledrepos]),\
 md=True)
-jsondump(disabledrepos,'disabledrepos.json')
+jsondump(list(disabledrepos),'disabledrepos.json')
 print('disabledrepos:',disabledrepos)
+print('olddisabledrepos:',olddisabledrepos)
+print('newdisabledrepos:',newdisabledrepos)
