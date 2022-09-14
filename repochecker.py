@@ -28,7 +28,7 @@ for username in usernames:
 
 newdisabledrepos=disabledrepos-olddisabledrepos
 if newdisabledrepos:
-  jmail('Repo Checker','%s 等仓库被封了!'%', '.join([i.split('/')[1] for i in (newdisabledrepos[:2] if len(newdisabledrepos)>2 else newdisabledrepos)]),\
+  jmail('Repo Checker','%s 等仓库被封了!'%', '.join([i.split('/')[1] for i in (list(newdisabledrepos)[:2] if len(newdisabledrepos)>2 else newdisabledrepos)]),\
 """
 %s
 """%'\n'.join(['* https://github.com/%s'%repo for repo in newdisabledrepos]),\
