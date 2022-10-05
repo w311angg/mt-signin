@@ -136,20 +136,20 @@ jobs:
     #    wxopenid: ${{ secrets.fuckbigstudy_wxopenid }}
     #  run: |
     #    proxychains python -u fuckbigstudy.py
-    - name: bird
-      if: always() && steps.setproxy.outcome == 'success'
-      env:
-        username: ${{ secrets.bird_username }}
-        password: ${{ secrets.bird_password }}
-      run: |
-        proxychains python -u bird.py
-    #- name: repochecker
+    #- name: bird
     #  if: always() && steps.setproxy.outcome == 'success'
     #  env:
-    #    jmail: ${{ secrets.JMAIL_PASSWORD }}
-    #    token: ${{ secrets.repochecker_token }}
+    #    username: ${{ secrets.bird_username }}
+    #    password: ${{ secrets.bird_password }}
     #  run: |
-    #    proxychains python -u repochecker.py
+    #    proxychains python -u bird.py
+    - name: repochecker
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        jmail: ${{ secrets.JMAIL_PASSWORD }}
+        token: ${{ secrets.repochecker_token }}
+      run: |
+        proxychains python -u repochecker.py
     - name: hlx
       if: always() && steps.setproxy.outcome == 'success'
       env:
