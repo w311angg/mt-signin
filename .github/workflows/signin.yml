@@ -143,13 +143,13 @@ jobs:
         password: ${{ secrets.bird_password }}
       run: |
         proxychains python -u bird.py
-    - name: repochecker
-      if: always() && steps.setproxy.outcome == 'success'
-      env:
-        jmail: ${{ secrets.JMAIL_PASSWORD }}
-        token: ${{ secrets.repochecker_token }}
-      run: |
-        proxychains python -u repochecker.py
+    #- name: repochecker
+    #  if: always() && steps.setproxy.outcome == 'success'
+    #  env:
+    #    jmail: ${{ secrets.JMAIL_PASSWORD }}
+    #    token: ${{ secrets.repochecker_token }}
+    #  run: |
+    #    proxychains python -u repochecker.py
     - name: hlx
       if: always() && steps.setproxy.outcome == 'success'
       env:
