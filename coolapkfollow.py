@@ -60,7 +60,7 @@ for userid in followUser:
 md=''
 for userid, data in newfeeds.items():
   if data:
-    md+='## %s\n'%data[0]['username']
+    md+='## [%s](http://www.coolapk.com/u/%s)\n'%(data[0]['username'],userid)
     for i in data:
       md+='''\
 %s • %s
