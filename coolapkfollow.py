@@ -70,9 +70,9 @@ for userid, data in newfeeds.items():
 %s
 
 ---
-'''%(i['link'],i['time'],i['content'])
+'''%(i['link'],i['time'],i['content'].replace('#','\#'))
 if md:
   print(md)
-  jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.keys()]),markdown(md),html=True)
+  jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.values()]),markdown(md),html=True)
 
 jsondump(feedsData,'coolapkfollow.json')
