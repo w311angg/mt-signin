@@ -63,14 +63,13 @@ for userid, data in newfeeds.items():
     md+='## %s\n'%data[0]['username']
     for i in data:
       md+='''\
-%s
-
-%s
+%s • %s
 
 %s
 
 ---
-'''%(i['link'],i['time'],i['content'].replace('#','\#'))
+
+'''%(i['time'],i['link'],i['content'].replace('#','\#'))
 if md:
   print(md)
   jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.values()]),markdown(md),html=True)
