@@ -2,8 +2,9 @@ name: CoolApkFollow
 
 on:
   push:
-    paths-ignore:
-      - 'README.md'
+    paths:
+      - 'coolapkfollow.py'
+      - 'coolapkfollow.yml'
   schedule:
     - cron: 30 10 * * *
   workflow_dispatch:
