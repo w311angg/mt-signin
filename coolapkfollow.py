@@ -4,6 +4,7 @@ from markdown import markdown
 from datetime import datetime
 import timeago
 import os
+import coolapk
 
 token=os.getenv('token')
 followUser=os.getenv('followuser').split(',')
@@ -14,11 +15,11 @@ headers={
 'X-Sdk-Int': '31',
 'X-Sdk-Locale': 'zh-CN',
 'X-App-Id': 'com.coolapk.market',
-'X-App-Token': 'v2JDJ5JDEwJE1UWTJOVEl6TlRRM05nLzA0YTYwNU9TUkNiWkQuYXZzSVFJOUUwbjVEb1BlUWlUejFZRnlD',
+'X-App-Token': coolapk.get_app_token(),
 'X-App-Version': '12.4',
 'X-App-Code': '2207192',
 'X-Api-Version': '12',
-'X-App-Device': 'AbsVnbgsjNy4CSfFTMfBTM5ETTHByOwETOx00Rgszc1xGUl52Tgszc1xGUl52TgsDI7AyOgsTN2IWOkFGO3czYhNzN2EzY',
+'X-App-Device': 'QRTBCOgkUTgsTat9WYphFI7kWbvFWaYByO1YjOCdjOxAjOxEkOFJjODlDI7ATNxMjM5MTOxcjMwAjN0AyOxEjNwgDNxITM2kDMzcTOgsTZzkTZlJ2MwUDNhJ2MyYzM',
 'X-Dark-Mode': '0',
 'X-App-Channel': 'coolapk',
 'X-App-Mode': 'universal',
