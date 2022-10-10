@@ -42,7 +42,6 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-        wget https://github.com/ZCKun/CoolapkTokenCrack/raw/master/coolapk.py
     - name: Set proxy
       id: setproxy
       uses: w311ang/setproxy@main
