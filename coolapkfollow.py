@@ -60,7 +60,7 @@ for userid in followUser:
         'username': username,
         'content': message.replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a> ','').replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a>',''),
         'time': timeago.format(datetime.fromtimestamp(timestamp),datetime.now(),'zh_CN'),
-        'link': 'coolmarket://feed/'+str(feedid)
+        'link': 'https://www.coolapk.com/feed/'+str(feedid)
       })
 
 md=''
@@ -69,7 +69,7 @@ for userid, data in newfeeds.items():
     md+='## [%s](http://www.coolapk.com/u/%s)\n'%(data[0]['username'],userid)
     for i in data:
       md+='''\
-%s • [动态](%s)
+%s • %s
 
 %s
 
