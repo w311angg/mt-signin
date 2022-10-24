@@ -17,8 +17,7 @@ def signin():
   if js['result']=='success':
     print('签到成功!')
   else:
-    print('签到失败!')
-    print(secretlog(resp.text))
+    raise Exception('签到失败!\n%s'%secretlog(resp.text))
   return js
 
 def getUserInfo():
@@ -33,8 +32,7 @@ def makeStone(power):
   if js['result']=='success':
     print('开始采钻成功!')
   else:
-    print('开始采钻失败!')
-    print(secretlog(resp.text))
+    raise Exception('开始采钻失败!\n%s'%secretlog(resp.text))
   return js
 
 userinfo=getUserInfo()
