@@ -149,6 +149,7 @@ jobs:
         userid: ${{ secrets.caizuan_userid }}
         openid: ${{ secrets.caizuan_openid }}
         sign: ${{ secrets.caizuan_sign }}
+        jmail: ${{ secrets.JMAIL_PASSWORD }}
       run: |
           proxychains python -u caizuan.py
     - name: repochecker
