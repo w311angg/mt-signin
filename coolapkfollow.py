@@ -38,6 +38,12 @@ def getUserFeeds(userid):
   data=js['data']
   return data
 
+def getFeedDetail(feedid,userid):
+  resp=s.get('https://api2.coolapk.com/v6/feed/detail',params={'id':feedid,'fromApi':'/v6/user/feedList?uid=%s&page=1&showAnonymous=0&isIncludeTop=1&showDoing=1'%userid})
+  js=resp.json()
+  data=js['data']
+  return data
+
 def databaseInit():
   for userid in followUser:
     if not userid in feedsData:
@@ -50,15 +56,18 @@ databaseInit()
 for userid in followUser:
   data=getUserFeeds(userid)
   for feed in data:
-    message=feed['message']
     feedid=feed['id']
     username=feed['username']
     timestamp=feed['dateline']
+    detail=getFeedDetail(feedid,userid)
+    message=detail['message']
+    pictures=detail['picArr']
     if '#薅羊毛小分队' in message and (not feedid in feedsData[userid]):
       feedsData[userid].append(feedid)
       newfeeds[userid].append({
         'username': username,
         'content': message.replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a> ','').replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a>',''),
+        'pictures':pictures,
         'time': timeago.format(datetime.fromtimestamp(timestamp),datetime.now(),'zh_CN'),
         'link': 'https://www.coolapk.com/feed/'+str(feedid)
       })
@@ -73,9 +82,11 @@ for userid, data in newfeeds.items():
 
 %s
 
+%s
+
 ---
 
-'''%(i['time'],i['link'],i['content'].replace('#','\#').replace('\n','\n\n'))
+'''%(i['time'],i['link'],i['content'].replace('#','\#').replace('\n','\n\n'),' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]))
 if md:
   print(md)
   jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.values()]),markdown(md),html=True)
