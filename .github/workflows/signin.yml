@@ -160,4 +160,12 @@ jobs:
         max_attempts: 3
         command: |
           proxychains python -u hlx.py
+    - name: caizuan
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        userid: ${{ secrets.caizuan_userid }}
+        openid: ${{ secrets.caizuan_openid }}
+        sign: ${{ secrets.caizuan_sign }}
+      run: |
+          proxychains python -u caizuan.py
     - uses: gautamkrishnar/keepalive-workflow@master
