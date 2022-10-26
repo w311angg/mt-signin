@@ -47,7 +47,7 @@ def makeStone(power):
   return js
 
 userinfo=getUserInfo()
-power=userinfo['userdata']['power']
+power=int(userinfo['userdata']['power'])
 isMining=userinfo['make_stone_time']>0
 time.sleep(random.randint(2,9))
 signin()
