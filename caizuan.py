@@ -15,7 +15,7 @@ def signin():
   name='签到'
 
   resp=s.get('https://bai-piao.com/app/index.php?i=2&t=0&v=1.0&from=wxapp&c=entry&a=wxapp&do=user&m=skai_tooln_a&dopost=make_sign&userid=%s&openid=%s'%(userid,openid))
-  print('%s: %s'%(name,secretlog(resp.text))
+  print('%s: %s'%(name,secretlog(resp.text)))
   js=resp.json()
   if js['result']=='success':
     print('%s成功!'%name)
@@ -37,7 +37,7 @@ def makeStone(power):
   name='开始采钻'
 
   resp=s.get('https://bai-piao.com/app/index.php?i=2&t=0&v=1.0&from=wxapp&c=entry&a=wxapp&do=index&m=skai_tooln_a&dopost=make_stone&userid=%s&openid=%s&make_power=%s'%(userid,openid,power))
-  print('%s: %s'%(name,secretlog(resp.text))
+  print('%s: %s'%(name,secretlog(resp.text)))
   js=resp.json()
   if js['result']=='success':
     print('%s成功!'%name)
