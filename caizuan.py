@@ -22,7 +22,7 @@ def signin():
   else:
     msg=js['msg']
     if msg=='今天已经签到，请明天再来喔~':
-      print('%s: %s'%(name,msg))
+      print(msg)
     else:
       raise Exception('%s失败: %s'%(name,msg))
   return js
