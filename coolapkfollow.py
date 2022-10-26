@@ -86,7 +86,7 @@ for userid, data in newfeeds.items():
 
 ---
 
-'''%(i['time'],i['link'],i['content'].replace('#','\#').replace('\n','\n\n'),' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]))
+'''%(i['time'],i['link'],i['content'].replace('#','\#').replace('\n','<br>'),' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]))
 if md:
   print(md)
   jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.values()]),markdown(md),html=True)
