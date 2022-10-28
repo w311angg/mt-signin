@@ -14,6 +14,7 @@ s.headers.update({'user-agent':'Mozilla/5.0 (Linux; Android 12; GM1910 Build/SKQ
 def signin():
   name='签到'
 
+  time.sleep(random.randint(2,9))
   resp=s.get('https://bai-piao.com/app/index.php?i=2&t=0&v=1.0&from=wxapp&c=entry&a=wxapp&do=user&m=skai_tooln_a&dopost=make_sign&userid=%s&openid=%s'%(userid,openid))
   print('%s: %s'%(name,secretlog(resp.text)))
   js=resp.json()
@@ -28,6 +29,7 @@ def signin():
   return js
 
 def getUserInfo():
+  time.sleep(random.randint(2,9))
   resp=s.get('https://bai-piao.com/app/index.php?i=2&t=0&v=1.0&from=wxapp&c=entry&a=wxapp&do=user&m=skai_tooln_a&dopost=get_user_data&userid=%s&openid=%s&get_offline_stone_status=1&sign=%s'%(userid,openid,getUserInfoSign))
   js=resp.json()
   print('userinfo:',secretlog(resp.text))
@@ -36,6 +38,7 @@ def getUserInfo():
 def makeStone(power):
   name='开始采钻'
 
+  time.sleep(random.randint(2,9))
   resp=s.get('https://bai-piao.com/app/index.php?i=2&t=0&v=1.0&from=wxapp&c=entry&a=wxapp&do=index&m=skai_tooln_a&dopost=make_stone&userid=%s&openid=%s&make_power=%s'%(userid,openid,power))
   print('%s: %s'%(name,secretlog(resp.text)))
   js=resp.json()
@@ -49,12 +52,15 @@ def makeStone(power):
 userinfo=getUserInfo()
 power=int(userinfo['userdata']['power'])
 isMining=userinfo['make_stone_time']>0
-time.sleep(random.randint(2,9))
-power=signin()['power']
+r=signin()
+if 'power' in r:
+  power=r['power']
+else:
+  userinfo=getUserInfo()
+  power=int(userinfo['userdata']['power'])
 if isMining:
   print('正在采钻中，跳过')
 elif power<=0:
   print('没有能量，无法采钻')
 else:
-  time.sleep(random.randint(2,9))
   makeStone(power)
