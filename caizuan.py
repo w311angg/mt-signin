@@ -50,7 +50,7 @@ userinfo=getUserInfo()
 power=int(userinfo['userdata']['power'])
 isMining=userinfo['make_stone_time']>0
 time.sleep(random.randint(2,9))
-power=signin()
+power=signin()['power']
 if isMining:
   print('正在采钻中，跳过')
 elif power<=0:
