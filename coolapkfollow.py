@@ -101,7 +101,7 @@ for userid, data in newfeeds.items():
   i['link'],
   i['content'].replace('#','\#').replace('\n','<br>'),
   ' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]),
-  '\n'.join(i['reply'].replace('\n','<br>'))
+  '\n'.join([i.replace('\n','<br>') for i in i['reply']])
 )
 if md:
   print(md)
