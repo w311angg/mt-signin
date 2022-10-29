@@ -75,7 +75,7 @@ for userid in followUser:
         'username': username,
         'content': message.replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a> ','').replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a>',''),
         'pictures':pictures,
-        'reply': [{'msg':i['message'].replace(' [图片]','').replace('[图片] ',''),'pic':i['picArr'] if 'picArr' in i else []} for i in reply],
+        'reply': [{'msg':i['message'].replace(' [图片]','').replace('[图片] ','').replace('[图片]',''),'pic':i['picArr'] if 'picArr' in i else []} for i in reply],
         'time': timeago.format(datetime.fromtimestamp(timestamp),datetime.now(),'zh_CN'),
         'link': 'https://www.coolapk.com/feed/'+str(feedid)
       })
@@ -101,7 +101,7 @@ for userid, data in newfeeds.items():
   i['link'],
   i['content'].replace('#','\#').replace('\n','<br>'),
   ' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]),
-  '\n'.join(
+  '\n\n'.join(
     ['%s %s'%(
       ia['msg'].replace('\n','<br>'),
       ' '.join(['[\[图片\]](%s)'%ib for ib in ia['pic']])
