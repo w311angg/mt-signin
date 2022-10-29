@@ -153,6 +153,7 @@ jobs:
         jmail: ${{ secrets.JMAIL_PASSWORD }}
         sckey: ${{ secrets.servercheck_key }}
         on: ${{ github.event_name }}
+        targetGold: ${{ secrets.caizuan_targetgold }}
       run: |
           proxychains python -u caizuan.py
     - name: repochecker
