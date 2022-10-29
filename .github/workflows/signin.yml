@@ -65,6 +65,7 @@ jobs:
       with:
         path: |
           ./disabledrepos.json
+          ./caizuan.json
         key: ${{ github.job }}-${{ github.run_id }}
         restore-keys: |
           ${{ github.job }}-
@@ -150,6 +151,8 @@ jobs:
         openid: ${{ secrets.caizuan_openid }}
         sign: ${{ secrets.caizuan_sign }}
         jmail: ${{ secrets.JMAIL_PASSWORD }}
+        sckey: ${{ secrets.servercheck_key }}
+        on: ${{ github.event_name }}
       run: |
           proxychains python -u caizuan.py
     - name: repochecker
