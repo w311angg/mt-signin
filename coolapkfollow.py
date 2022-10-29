@@ -44,6 +44,12 @@ def getFeedDetail(feedid,userid):
   data=js['data']
   return data
 
+def getFeedAuthorReply(feedid):
+  resp=s.get('https://api2.coolapk.com/v6/feed/replyList?id=%s&listType=&page=1&discussMode=1&feedType=feed&blockStatus=0&fromFeedAuthor=1'%feedid)
+  js=resp.json()
+  data=js['data']
+  return data
+
 def databaseInit():
   for userid in followUser:
     if not userid in feedsData:
@@ -62,12 +68,14 @@ for userid in followUser:
     detail=getFeedDetail(feedid,userid)
     message=detail['message']
     pictures=detail['picArr']
+    reply=getFeedAuthorReply(feedid)
     if '#薅羊毛小分队' in message and (not feedid in feedsData[userid]):
       feedsData[userid].append(feedid)
       newfeeds[userid].append({
         'username': username,
         'content': message.replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a> ','').replace('<a class="feed-link-tag" href="/t/薅羊毛小分队?type=0">#薅羊毛小分队#</a>',''),
         'pictures':pictures,
+        'reply': [i['message'] for i in reply],
         'time': timeago.format(datetime.fromtimestamp(timestamp),datetime.now(),'zh_CN'),
         'link': 'https://www.coolapk.com/feed/'+str(feedid)
       })
@@ -84,9 +92,17 @@ for userid, data in newfeeds.items():
 
 %s
 
+%s
+
 ---
 
-'''%(i['time'],i['link'],i['content'].replace('#','\#').replace('\n','<br>'),' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]))
+'''%(
+  i['time'],
+  i['link'],
+  i['content'].replace('#','\#').replace('\n','<br>'),
+  ' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]),
+  '\n'.join(i['reply'].replace('\n','<br>'))
+)
 if md:
   print(md)
   jmail('羊毛检查机','今日共有%s个羊毛'%sum([len(i) for i in newfeeds.values()]),markdown(md),html=True)
