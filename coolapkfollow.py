@@ -26,7 +26,7 @@ headers={
 'X-App-Supported': '2207192',
 'Cookie': token
 }
-s=httpx.Client()
+s=httpx.Client(timeout=10.0)
 s.headers.update(headers)
 
 feedsData=jsonread('coolapkfollow.json',{})
