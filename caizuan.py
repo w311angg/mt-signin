@@ -2,11 +2,22 @@ import httpx
 import time
 import random
 from pytools.pytools import secretlog
+from pytools.pytools import serverchen
+from pytools.pytools import jsondump,jsonread
 import os
+from decimal import Decimal
 
 userid=os.environ['userid']
 openid=os.environ['openid']
 getUserInfoSign=os.environ['sign']
+targetGold=Decimal(os.environ['targetGold'])
+on=os.environ['on']
+
+config=jsonread('caizuan.json',{'targetGold':str(targetGold),'isAcheive':False})
+config['targetGold']=Decimal(config['targetGold'])
+
+if on=='schedule':
+  time.sleep(random.randint(2,9)*60)
 
 s=httpx.Client()
 s.headers.update({'user-agent':'Mozilla/5.0 (Linux; Android 12; GM1910 Build/SKQ1.211113.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/86.0.4240.99 XWEB/4317 MMWEBSDK/20220903 Mobile Safari/537.36 MMWEBID/6025 MicroMessenger/8.0.28.2240(0x28001C35) WeChat/arm64 Weixin NetType/WIFI Language/zh_CN ABI/arm64','referer':'https://bai-piao.com/','x-requested-with':'com.tencent.mm'})
@@ -64,3 +75,18 @@ elif power<=0:
   print('没有能量，无法采钻')
 else:
   makeStone(power)
+
+stone=Decimal(userinfo['stone'])
+gold=Decimal(userinfo['gold'])
+gold+=Decimal(int(stone/1000)/100)
+
+if targetGold != config['targetGold']:
+  config['targetGold']=targetGold
+  config['isAcheive']=False
+if gold>=targetGold:
+  if not isAcheive:
+    serverchen('白瓢软贝置换后已达到%s'%gold,'https://bai-piao.com/')
+  config['isAcheive']=True
+
+config['targetGold']=str(config['targetGold'])
+jsondump(config,'caizuan.json')
