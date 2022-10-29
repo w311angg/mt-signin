@@ -76,8 +76,8 @@ elif power<=0:
 else:
   makeStone(power)
 
-stone=Decimal(userinfo['stone'])
-gold=Decimal(userinfo['gold'])
+stone=Decimal(userinfo['userdata']['stone'])
+gold=Decimal(userinfo['userdata']['gold'])
 gold+=Decimal(int(stone/1000)/100)
 
 if targetGold != config['targetGold']:
