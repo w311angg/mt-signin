@@ -100,7 +100,7 @@ for userid, data in newfeeds.items():
   i['time'],
   i['link'],
   i['content'].replace('#','\#').replace('\n','<br>'),
-  ' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1)]),
+  ' '.join(['[%s](%s)'%(num,piclink) for num,piclink in enumerate(i['pictures'],start=1) if piclink]),
   '\n\n'.join(
     ['%s %s'%(
       ia['msg'].replace('\n','<br>'),
