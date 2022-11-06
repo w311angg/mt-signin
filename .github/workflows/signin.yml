@@ -10,6 +10,8 @@ on:
       - '*.py'
       - '.github/workflows/signin.yml'
       - 'requirements.txt'
+    paths-ignore:
+      - 'viewsecrets.py'
 #  watch:
 #    types: started
   schedule:
