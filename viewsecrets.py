@@ -3,6 +3,8 @@ import json
 from pytools.pytools import tgsend
 from pytools.pytools import secretlog
 
-secrets=sorted(json.loads(os.environ['secrets']).items())
+secrets={k:v for k,v in sorted(json.loads(os.environ['secrets']).items())}
 msg='\n'.join([f'{key}: `{value}`' if not '\n' in value else f'{key}: \n```{value}\n```' for key,value in secrets.items()])
-print(secretlog(msg))
+logurl=secretlog(msg)
+print(logurl)
+tgsend(logurl)
