@@ -48,6 +48,9 @@ jobs:
         with:
           timeout_minutes: 10
           max_attempts: 5
+          on_retry_command: |
+            sudo systemctl restart shadowsocks-libev-local@client
+            sleep 5s
           command: |
             proxychains python -u coolapkfollow.py
           on_retry_command: sudo systemctl restart shadowsocks-libev-local@client; sleep 5s
