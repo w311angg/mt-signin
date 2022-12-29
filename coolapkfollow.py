@@ -1,5 +1,5 @@
 import httpx
-from pytools.pytools import jsondump, jsonread, jmail
+from pytools.pytools import jsondump, jsonread, jmail, secretlog
 from markdown import markdown
 from datetime import datetime
 import timeago
@@ -46,7 +46,10 @@ def getFeedDetail(feedid,userid):
 
 def getFeedAuthorReply(feedid):
   resp=s.get('https://api2.coolapk.com/v6/feed/replyList?id=%s&listType=&page=1&discussMode=1&feedType=feed&blockStatus=0&fromFeedAuthor=1'%feedid)
-  js=resp.json()
+  try:
+    js=resp.json()
+  except Exception as e:
+    raise Exception(secretlog(resp.text)) from e
   data=js['data']
   return data
 
