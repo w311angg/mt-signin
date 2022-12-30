@@ -64,7 +64,11 @@ databaseInit()
 
 for userid in followUser:
   data=getUserFeeds(userid)
+  isFirstTime=True
   for feed in data:
+    if not isFirstTime:
+      isFirstTime=False
+      time.sleep(5)
     feedid=feed['id']
     username=feed['username']
     timestamp=feed['dateline']
