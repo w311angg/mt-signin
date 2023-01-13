@@ -189,4 +189,10 @@ jobs:
    #     max_attempts: 3
    #     command: |
    #       proxychains python -u hlx.py
+    - name: dada
+      if: always() && steps.setproxy.outcome == 'success'
+      env:
+        config: ${{ secrets.dada_config }}
+      run: |
+        proxychains python -u dada.py
     - uses: gautamkrishnar/keepalive-workflow@master
