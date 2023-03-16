@@ -1,6 +1,7 @@
 import httpx
 from pytools.pytools import jsondump, jsonread
 from pytools.pytools import jmail
+from pytools.pytools import secretlog
 import os
 
 token=os.getenv('token')
@@ -15,6 +16,7 @@ for username in usernames:
   resp=s.get('https://api.github.com/users/%s/repos'%username,headers=headers)
   js=resp.json()
   for repo in js:
+    print(secretlog(repo))
     name=repo['name']
     fullname='%s/%s'%(username,name)
     if not fullname in disabledrepos:
