@@ -14,9 +14,11 @@ disabledrepos=set(olddisabledrepos)
 
 for username in usernames:
   resp=s.get('https://api.github.com/users/%s/repos'%username,headers=headers)
+  if resp.text == '':
+    raise Exception('api获取结果为空，可能token已过期: '+secretlog(resp.text))
   js=resp.json()
   for repo in js:
-    print(secretlog(repo))
+    #print(secretlog(repo))
     name=repo['name']
     fullname='%s/%s'%(username,name)
     if not fullname in disabledrepos:
