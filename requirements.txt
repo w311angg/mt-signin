@@ -5,3 +5,4 @@ git+https://github.com/w311ang/pytools.git@package
 tenacity
 timeago
 httpx
+markdown
