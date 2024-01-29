@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>动态生成链接示例</title>
+    <style>
+        .copy-link {
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script>
+        var brands = [
+            '麦当劳', '中国移动', '中油好客e站', '快电', 
+            '乡村基', '携程', '爱悦租机', '苏宁易购', 
+            '沃尔玛自助收银', '世纪佳缘', '汉堡王', '顺丰', '国家政务服务平台'
+        ];
+
+        function copyToClipboard(text) {
+            var tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+        }
+
+        function createLinks() {
+            var container = document.getElementById('linkContainer');
+            brands.forEach(function(brand) {
+                var link = document.createElement('a');
+                link.innerText = brand;
+                link.href = "#";
+                link.className = "copy-link";
+                link.onclick = function(e) {
+                    e.preventDefault();
+                    copyToClipboard(brand);
+                };
+                container.appendChild(link);
+                container.appendChild(document.createElement("br")); // 换行
+            });
+        }
+
+        window.onload = createLinks;
+    </script>
+</head>
+<body>
+    <div id="linkContainer"></div>
+</body>
+</html>
